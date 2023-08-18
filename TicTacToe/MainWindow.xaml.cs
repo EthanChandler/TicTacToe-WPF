@@ -23,6 +23,7 @@ namespace TicTacToe
         public MainWindow()
         {
             InitializeComponent();
+            GameBoard InstanceOfGameBoard = new GameBoard();
         }
     }
 }
