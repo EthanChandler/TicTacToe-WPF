@@ -19,21 +19,22 @@ namespace TicTacToe
 
         public GameBoard()
         {
+            Board = new int[9];
             GameBegin();
             PossibleMove(TakeInput());
         }
         public void GameBegin() {
-            Board = new int[9];
+            //Board = new int[9];
             PlayerPlaying = PlayerEnum.X;
         }
 
-        public int TakeInput(){
+        public int TakeInput() { 
             return 5;
         }
         public bool PossibleMove(int pos)  {
             if (Board[pos] == 0 )  {
-                Console.WriteLine((int)PlayerEnum.X);
-                Board[pos] = (int)PlayerEnum.X;
+                Console.WriteLine((int)PlayerPlaying);
+                Board[pos] = (int)PlayerPlaying;
                 return true;
             }
             return false;
@@ -66,6 +67,31 @@ namespace TicTacToe
             {
                 new int[] { 2, 4, 6 }//TopRighToBottomLeft,
             });
+
+            foreach (var Position in  winConDictionary)
+            {
+                int winConKey = Position.Key;
+                List<int[]> winConList = Position.Value;
+
+                foreach (int[] winCon in winConList)
+                {
+                    bool hasWon = true;
+
+                    foreach (int Square in winCon)
+                    {
+                        if (Board[Square] != (int)Player)
+                        {
+                            hasWon = false;
+                            break;
+                        }
+                    }
+
+                    if (hasWon)
+                    {
+                        return true;
+                    }
+                }
+            }
 
             return false;
         }
