@@ -21,15 +21,22 @@ namespace TicTacToe
         {
             Board = new int[9];
             GameBegin();
-            PossibleMove(TakeInput());
         }
         public void GameBegin() {
             //Board = new int[9];
             PlayerPlaying = PlayerEnum.X;
         }
 
-        public int TakeInput() { 
-            return 5;
+        public void SwitchTurns()
+        {
+            if (PlayerPlaying == PlayerEnum.X)
+            {
+                PlayerPlaying = PlayerEnum.O;
+            }
+            else
+            {
+                PlayerPlaying = PlayerEnum.X;
+            }
         }
         public bool PossibleMove(int pos)  {
             if (Board[pos] == 0 )  {

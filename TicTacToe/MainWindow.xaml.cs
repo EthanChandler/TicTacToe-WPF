@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -45,18 +47,45 @@ namespace TicTacToe
 
         private void MoveMade(int i)
         {
-
+            
+            PlayerEnum player = CurrentGame.PlayerPlaying;
+            Controls[i].Source = PlayerPNG[player];
         }
 
 
         private void GameGrid_Press(object sender,MouseButtonEventArgs e)
         {
-            double Size = GameGrid.Width / 3;
+            double Width = GameGrid.ActualWidth / 3;
+            double Height = GameGrid.ActualHeight / 3;
             Point MousePosition = e.GetPosition(GameGrid);
-            int row = (int)(MousePosition.Y / Size);
-            int col = (int)(MousePosition.X / Size);
-            //bool v = GameBoard.PossibleMove(4);
-            //Changes to be made in the Logic of the game to work properly.
+            int row = (int)(MousePosition.Y / Width);
+            int col = (int)(MousePosition.X / Height);
+            int temp = -1;
+            MessageBox.Show($"Clicked on cell: Row {row}, Column {col}");
+            if (row == 0) {
+                if (col == 0){ temp = 0; }
+                else if (col == 1) { temp = 1; }
+                else if (col == 2) { temp = 2; }
+            }
+            else if (row == 1) {
+                if (col == 0) { temp = 3; }
+                else if (col == 1) { temp = 4; }
+                else if (col == 2) { temp = 5; }
+            }
+            else if (row == 2)
+            {
+                if (col == 0) { temp = 6; }
+                else if (col == 1) { temp = 7; }
+                else if (col == 2) { temp = 8; }
+            }
+            if (temp != -1)
+            {
+                bool v = CurrentGame.PossibleMove(temp);
+                if (v) { 
+                    MoveMade(temp);
+                    CurrentGame.SwitchTurns();
+                }
+            }
         }
 
 
