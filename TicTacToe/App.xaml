@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:TicTacToe"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="BackgroundColor" Color="CadetBlue" />
+        <SolidColorBrush x:Key="ButtonColor" Color="Aqua"/>
+        <SolidColorBrush x:Key="LineColor" Color="MediumPurple"/>
+
     </Application.Resources>
 </Application>
