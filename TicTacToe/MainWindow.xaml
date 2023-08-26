@@ -8,36 +8,49 @@
         Title="Tic Tac Toe" Height="450" Width="800"
         Background="{StaticResource BackgroundColor}" >
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid x:Name="Grid1" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel x:Name="Panel"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"/>
-        <TextBlock FontSize="44"
-                   Text="Player 1:"/>
-        <Image x:Name="Player1Image"
-               Source="Assets/X.png" 
-               Height="55" Margin="-194,1,194,888"/>
+            <StackPanel x:Name="Panel"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"/>
+            <TextBlock FontSize="44"
+                       Text="Player 1:"/>
+            <Image x:Name="Player1Image"
+                   Source="Assets/X.png" 
+                   Height="55" Margin="-194,1,194,888"/>
 
-        <TextBlock FontSize="44"
-           Text="Player 2:" Margin="318,0,82,362"/>
-        <Image x:Name="Player2Image"
-       Source="Assets/O.png" Margin="495,0,260,891" Height="55"/>
-        <Canvas x:Name="GameCanvas"
-                Width="300"
-                Height="300" Margin="250,127,250,517"/>
-        <UniformGrid x:Name="GameGrid"
-                         Width="300"
-                         Height="300"
-                         Rows="3"
-                         Columns="3"
-                         MouseDown="GameGrid_Press" Margin="250,127,250,517" Cursor="Cross">
-            <UniformGrid.Background>
-                <ImageBrush ImageSource="Assets/Grid.png"/>
-            </UniformGrid.Background>
-        </UniformGrid>
+            <TextBlock FontSize="44"
+               Text="Player 2:" Margin="318,0,82,362"/>
+            <Image x:Name="Player2Image"
+           Source="Assets/O.png" Margin="495,0,260,891" Height="55"/>
+            <Canvas x:Name="GameCanvas"
+                    Width="300"
+                    Height="300" Margin="250,127,250,517"/>
+            <UniformGrid x:Name="GameGrid"
+                             Width="300"
+                             Height="300"
+                             Rows="3"
+                             Columns="3"
+                             MouseDown="GameGrid_Press" Margin="250,127,250,517" Cursor="Cross">
+                <UniformGrid.Background>
+                    <ImageBrush ImageSource="Assets/Grid.png"/>
+                </UniformGrid.Background>
+            </UniformGrid>
+        </Grid>
+        <Grid x:Name="WinningScreen" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="WinScreen" FontSize="100"
+                Text="WinScreen" Margin="70,109,-70,192" Grid.RowSpan="2"/>
+
+            <Button Content="Restart Game" Click="RestartGame" Margin="681,29,33,348" Grid.RowSpan="2"/>
+            
+        </Grid>
     </Grid>
 </Window>

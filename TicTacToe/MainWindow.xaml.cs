@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Numerics;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,12 +48,30 @@ namespace TicTacToe
 
         private void MoveMade(int i)
         {
-            
             PlayerEnum player = CurrentGame.PlayerPlaying;
             Controls[i].Source = PlayerPNG[player];
+            if (CurrentGame.WinningMove(player)) { 
+                //MessageBox.Show($"Player { player } has won");
+                WinScreen.Text = "Player " + player + " WINS";
+                Grid1.Visibility = Visibility.Hidden;
+                WinningScreen.Visibility = Visibility.Visible;
+            }
         }
 
-
+        private void ResetGrid()
+        {
+            for(int i = 0; i<9; i++)
+            {
+                Controls[i].Source = null;
+            }
+        }
+        private void RestartGame(object sender, RoutedEventArgs e)
+        {
+            ResetGrid();
+            CurrentGame.Reset();
+            Grid1.Visibility = Visibility.Visible;
+            WinningScreen.Visibility = Visibility.Hidden;
+        }
         private void GameGrid_Press(object sender,MouseButtonEventArgs e)
         {
             double Width = GameGrid.ActualWidth / 3;
@@ -61,7 +80,6 @@ namespace TicTacToe
             int row = (int)(MousePosition.Y / Width);
             int col = (int)(MousePosition.X / Height);
             int temp = -1;
-            MessageBox.Show($"Clicked on cell: Row {row}, Column {col}");
             if (row == 0) {
                 if (col == 0){ temp = 0; }
                 else if (col == 1) { temp = 1; }

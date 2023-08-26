@@ -17,6 +17,7 @@ namespace TicTacToe
         public event Action<GameBoard> GameBoardChanged;
         public event Action<int> MoveMade;
 
+
         public GameBoard()
         {
             Board = new int[9];
@@ -27,6 +28,10 @@ namespace TicTacToe
             PlayerPlaying = PlayerEnum.X;
         }
 
+        public void Reset()
+        {
+            Board = new int[9];
+        }
         public void SwitchTurns()
         {
             if (PlayerPlaying == PlayerEnum.X)
