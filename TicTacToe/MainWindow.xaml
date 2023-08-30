@@ -8,7 +8,20 @@
         Title="Tic Tac Toe" Height="450" Width="800"
         Background="{StaticResource BackgroundColor}" >
     <Grid>
-        <Grid x:Name="Grid1" Visibility="Visible">
+        <Grid x:Name="HomeScreen" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="100"
+                       Text="TicTacToe" Margin="171,37,-171,279" Grid.Row="1" FontFamily="SamsungOneUILatin 700C" />
+            <Button Content="" Margin="254,250,318,101" Grid.Row="1" Click="Start_Click" Cursor="Cross">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/Button.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid x:Name="Grid1" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -42,15 +55,15 @@
             </UniformGrid>
         </Grid>
         <Grid x:Name="WinningScreen" Visibility="Hidden">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock x:Name="WinScreen" FontSize="100"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="WinScreen" FontSize="100"
                 Text="WinScreen" Margin="70,109,-70,192" Grid.RowSpan="2"/>
 
             <Button Content="Restart Game" Click="RestartGame" Margin="681,29,33,348" Grid.RowSpan="2"/>
-            
+
         </Grid>
     </Grid>
 </Window>

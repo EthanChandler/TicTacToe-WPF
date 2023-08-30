@@ -16,6 +16,7 @@ namespace TicTacToe
 
         public event Action<GameBoard> GameBoardChanged;
         public event Action<int> MoveMade;
+        public int Turn;
 
 
         public GameBoard()
@@ -31,6 +32,7 @@ namespace TicTacToe
         public void Reset()
         {
             Board = new int[9];
+            Turn = 0;
         }
         public void SwitchTurns()
         {
@@ -47,6 +49,7 @@ namespace TicTacToe
             if (Board[pos] == 0 )  {
                 Console.WriteLine((int)PlayerPlaying);
                 Board[pos] = (int)PlayerPlaying;
+                Turn++;
                 return true;
             }
             return false;

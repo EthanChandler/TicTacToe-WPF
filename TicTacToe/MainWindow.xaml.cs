@@ -50,27 +50,33 @@ namespace TicTacToe
         {
             PlayerEnum player = CurrentGame.PlayerPlaying;
             Controls[i].Source = PlayerPNG[player];
+            if (CurrentGame.Turn == 9)
+            {
+                ResetGrid(false);
+            }
             if (CurrentGame.WinningMove(player)) { 
-                //MessageBox.Show($"Player { player } has won");
                 WinScreen.Text = "Player " + player + " WINS";
                 Grid1.Visibility = Visibility.Hidden;
                 WinningScreen.Visibility = Visibility.Visible;
             }
         }
 
-        private void ResetGrid()
+        private void ResetGrid(bool T)
         {
             for(int i = 0; i<9; i++)
             {
                 Controls[i].Source = null;
             }
+            CurrentGame.Reset();
+            if (T) {
+                Grid1.Visibility = Visibility.Hidden;
+                WinningScreen.Visibility = Visibility.Hidden;
+                HomeScreen.Visibility = Visibility.Visible;
+            }
         }
         private void RestartGame(object sender, RoutedEventArgs e)
         {
-            ResetGrid();
-            CurrentGame.Reset();
-            Grid1.Visibility = Visibility.Visible;
-            WinningScreen.Visibility = Visibility.Hidden;
+            ResetGrid(true);
         }
         private void GameGrid_Press(object sender,MouseButtonEventArgs e)
         {
@@ -106,9 +112,10 @@ namespace TicTacToe
             }
         }
 
-
-
-
-
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            HomeScreen.Visibility = Visibility.Hidden;
+            Grid1.Visibility = Visibility.Visible;
+        }
     }
 }
