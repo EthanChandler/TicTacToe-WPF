@@ -25,7 +25,6 @@ namespace TicTacToe
             GameBegin();
         }
         public void GameBegin() {
-            //Board = new int[9];
             PlayerPlaying = PlayerEnum.X;
         }
 
@@ -87,7 +86,6 @@ namespace TicTacToe
             {
                 int winConKey = Position.Key;
                 List<int[]> winConList = Position.Value;
-
                 foreach (int[] winCon in winConList)
                 {
                     bool hasWon = true;
@@ -100,7 +98,6 @@ namespace TicTacToe
                             break;
                         }
                     }
-
                     if (hasWon)
                     {
                         return true;
